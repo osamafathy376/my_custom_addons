@@ -1,0 +1,23 @@
+<odoo>
+    <record id="view_account_payment_form" model="ir.ui.view">
+        <field name="name">account.payment.form</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="assign_2"  widget="many2one_avatar_user"/>
+            </field>
+            <xpath expr="//field[@name='ref']" position="replace">
+                <field name="rate" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                <label for="transfer_money"/>
+                <div name="amounts_div" class="o_row">
+                    <field name="transfer_money" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    <field name="jornal" options="{'no_create': True, 'no_open': True}"
+                           attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                </div>
+
+
+            </xpath>
+        </field>
+    </record>
+</odoo>
